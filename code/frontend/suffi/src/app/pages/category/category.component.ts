@@ -1,25 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { fas } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-challenges-overview',
-  templateUrl: './challenges-overview.component.html',
-  styleUrls: ['./challenges-overview.component.scss']
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss']
 })
-export class ChallengesOverviewComponent implements OnInit {
-  private challenges: any;
-  private challengesstore: any = [
-    {id: 1, label: "Nahrung", icon: fas.faUtensils, solid: true, childs: [11,12,13,14,15]},
-    {id: 2, label: "Verkehr", icon: fas.faCarSide, solid: true},
-    {id: 3, label: "Wohnen", icon: fas.faHome, solid: false},
-    {id: 4, label: "Kleidung", icon: fas.faTshirt, solid: false},
-    {id: 11, label: "Regional", solid: true},
-    {id: 12, label: "Saisonal", solid: true},
-    {id: 13, label: "Fertigprodukte", solid: false},
-    {id: 14, label: "Vegetarisch", solid: false},
-    {id: 15, label: "Vegan", solid: false}
-  ]
+export class CategoryComponent implements OnInit {
+
 
   constructor(
     private route: ActivatedRoute

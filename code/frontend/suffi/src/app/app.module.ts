@@ -4,11 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // pages
 import { CategoriesOverviewComponent } from './pages/categories-overview/categories-overview.component';
-import { CategoriyComponent } from './pages/categories/category.component';
+import { CategoryComponent } from './pages/category/category.component';
 // structure
 import { QuicknavbarComponent } from './structure/quicknavbar/quicknavbar.component';
 import { MychallengesComponent } from './structure/mychallenges/mychallenges.component';
-import { ChallengesOverviewComponent } from './pages/challenges-overview/challenges-overview.component';
 import { ChallengesListComponent } from './structure/challenges-list/challenges-list.component';
 import { ChallengeButtonComponent } from './structure/challenge-button/challenge-button.component';
 
