@@ -1,5 +1,5 @@
 <div class="challenge-button">
   <fa-icon [icon]="challenge.icon" class="icon fa-2x"></fa-icon>
   <a routerLink="/home/{{challenge.id}}" class="challenge fa-fw" [attr.solid]="challenge.solid ? true : null">{{ challenge.label }}</a>
-  <a href="#" class="help">?</a>
+  <a href="#" class="help"><fa-icon [icon]="faQuestionCircle" class="icon far fa-2x"></fa-icon></a>
 </div>

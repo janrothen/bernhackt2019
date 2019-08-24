@@ -3,7 +3,7 @@
 .challenge-button {
   border-radius: $button-radius;
   background-color: $secondary-color;
-  
+
   .ng-fa-icon {
     display: inline-block;
     padding: 1rem;
@@ -15,7 +15,9 @@
     margin-right: 3rem;
     padding: 1rem;
     border-radius: $button-radius;
-
+    font-size: 200%;
+    line-height: 145%;
+    
     text-align: center;
     line-height: 1rem;
   }
