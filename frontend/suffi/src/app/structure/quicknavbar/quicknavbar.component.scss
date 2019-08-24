@@ -1,0 +1,9 @@
+:host {
+  flex: 0 0 3rem;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+}
