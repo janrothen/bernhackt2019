@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from suffi.quickstart.serializers import ActiveChallengeSerializer, UserSerializer, GroupSerializer, CategorySerializer, ChallengeSerializer, OptionSerializer
-from suffi.quickstart.models import Category, Challenge, Option, ActiveChallenge
+from .serializers import ActiveChallengeSerializer, UserSerializer, GroupSerializer, CategorySerializer, ChallengeSerializer, OptionSerializer
+from .models import Category, Challenge, Option, ActiveChallenge
 
 
 class UserViewSet(viewsets.ModelViewSet):

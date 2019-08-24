@@ -24,8 +24,9 @@ class Option(models.Model):
     co2 = models.DecimalField(max_digits=10, decimal_places=3)
     challenge = models.ForeignKey(Challenge, related_name='options', on_delete=models.CASCADE)
 
+
 class ActiveChallenge(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='activeChallenges', on_delete=models.CASCADE)
-    challenge = models.OneToOneField(Challenge, on_delete=models.CASCADE)
-    valueStart = models.OneToOneField(Option, on_delete=models.CASCADE)
-    valueGoal = models.OneToOneField(Option, on_delete=models.CASCADE)
+    challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
+    valueStart = models.ForeignKey(Option, related_name='activeChallenges_Start', on_delete=models.CASCADE)
+    valueGoal = models.ForeignKey(Option, related_name='activeChallenges_Goal', on_delete=models.CASCADE)

@@ -1,12 +1,12 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from suffi.quickstart.models import Category, Challenge, Option, ActiveChallenge
+from .models import Category, Challenge, Option, ActiveChallenge
 
 class ActiveChallengeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ActiveChallenge
         fields = ['challenge', 'valueStart', 'valueGoal', 'user']
-        depth = 1
+
 
 class UserSerializer(serializers.ModelSerializer):
     activeChallenges = ActiveChallengeSerializer(many=True, read_only=True)
