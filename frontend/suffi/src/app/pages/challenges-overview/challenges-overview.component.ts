@@ -9,6 +9,17 @@ import { faUtensils, faCarSide, faHome, faTshirt } from '@fortawesome/free-solid
 })
 export class ChallengesOverviewComponent implements OnInit {
   private challenges: any;
+  private challengesstore: any = [
+    {id: 1, label: "Nahrung", solid: true, childs: [11,12,13,14,15]},
+    {id: 2, label: "Verkehr", solid: true},
+    {id: 3, label: "Wohnen", solid: false},
+    {id: 4, label: "Kleidung", solid: false},
+    {id: 11, label: "Regional", solid: true},
+    {id: 12, label: "Saisonal", solid: true},
+    {id: 13, label: "Fertigprodukte", solid: false},
+    {id: 14, label: "Vegetarisch", solid: false},
+    {id: 15, label: "Vegan", solid: false}
+  ]
 
   constructor(
     private route: ActivatedRoute
@@ -16,24 +27,22 @@ export class ChallengesOverviewComponent implements OnInit {
 
   ngOnInit() {
     let id: number = +this.route.snapshot.paramMap.get('id');
+    // no id given, take main challenge categories
     if (!id) {
-      this.challenges = [
-        {id: 1, label: "Foodwaste", solid: true, icon: faUtensils},
-        {id: 2, label: "Verkehr", solid: true, icon: faCarSide},
-        {id: 3, label: "Wohnen", solid: false, icon: faHome},
-        {id: 4, label: "Kleidung", solid: false, icon: faTshirt}
-      ];
+      this.challenges = this.getChallenges([1,2,3,4]);
+    // id given, extract its childs
     } else {
-      switch (id) {
-        case 1:
-          this.challenges = [
-            {id: 10, label: "Regional", solid: true},
-            {id: 20, label: "Saisonal", solid: true},
-            {id: 30, label: "Vegan", solid: false},
-            {id: 40, label: "Vegetarisch", solid: false}
-          ]
-      }
+      // selected challenge
+      let sel = this.getChallenges([id])[0];
+      this.challenges = this.getChallenges(sel.childs);
     }
+  }
+
+  // return all the challenges from challengesstore with given ids
+  private getChallenges(ids: number[]) {
+    return this.challengesstore.filter((challenge) => {
+     return ids.indexOf(challenge.id) >= 0 ? true : false;
+   });
   }
 
 }
