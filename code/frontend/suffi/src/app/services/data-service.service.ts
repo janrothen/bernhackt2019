@@ -34,8 +34,6 @@ export class DataServiceService {
       category.isCategory = true;
 
       categories.push(category);
-      console.log(item);
-      console.log("getCategoriesFromBackend()" + item);
       }
     );
     

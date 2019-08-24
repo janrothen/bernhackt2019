@@ -13,7 +13,7 @@ import { TrophiesComponent } from './pages/trophies/trophies.component';
 import { FriendsComponent } from './pages/friends/friends.component';
 // structure
 import { QuicknavbarComponent } from './structure/quicknavbar/quicknavbar.component';
-import { MyChallengesComponent } from './structure/mychallenges/mychallenges.component';
+import { MyChallengesListComponent } from './structure/mychallenges-list/mychallenges-list.component';
 import { MyChallengeItemComponent } from './structure/mychallenge-item/mychallenge-item.component';
 import { ChallengesListComponent } from './structure/challenges-list/challenges-list.component';
 import { ChallengeButtonComponent } from './structure/challenge-button/challenge-button.component';
@@ -28,10 +28,10 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
     CategoriesOverviewComponent,
     CategoryComponent,
     QuicknavbarComponent,
-    MyChallengesComponent,
-    MyChallengeItemComponent,
     ChallengesListComponent,
     ChallengeButtonComponent,
+    MyChallengesListComponent,
+    MyChallengeItemComponent,
     HelpComponent,
     ChallengeComponent,
     TrophiesComponent,
