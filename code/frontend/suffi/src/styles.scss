@@ -17,3 +17,8 @@ body {
   width: 100%;
   height: 100%;
 }
+
+.header,
+.footer {
+  background-color: $menu-color;
+}

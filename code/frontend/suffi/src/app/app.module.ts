@@ -21,7 +21,8 @@ import { ChallengeItemComponent } from './structure/challenge-item/challenge-ite
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
 import { fas } from '@fortawesome/free-solid-svg-icons';
-
+import { HeaderComponent } from './structure/header/header.component';
+import { FooterComponent } from './structure/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,9 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
     HelpComponent,
     ChallengeComponent,
     TrophiesComponent,
-    FriendsComponent
+    FriendsComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
