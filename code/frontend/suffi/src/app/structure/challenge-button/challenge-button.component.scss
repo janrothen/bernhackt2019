@@ -2,54 +2,46 @@
 
 .challenge-element {
   width: 100%;
-  background-color: red;
-}
+  vertical-align: middle;
 
-.challenge-button {
-  border: none;
-  border-radius: $button-radius;
-  background-color: $secondary-color;
-  padding: 15px 32px;
-  width: 70%;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-
-  .ng-fa-icon {
-    display: inline-block;
-    padding: 1rem;
-    width: 5rem;
-  }
-
-  .challenge {
-    display: inline-block;
-    margin-right: 3rem;
-    padding: 1rem;
+  .button {
+    border: none;
     border-radius: $button-radius;
-    font-size: 200%;
-    line-height: 145%;
-    
-    text-align: center;
-    line-height: 1rem;
+    background-color: $secondary-color;
+
+    width: 90%;
+    text-decoration: none;
+    display: inline-block;
+  
+    .icon {
+      display: inline-block;
+      color: $icon-color;
+      padding: 2rem;
+      width: 5rem;
+    }
+
+    .label {
+      margin-left: 2rem;
+      font-size: 200%;
+      line-height: 1rem;
+    }
   }
-  .challenge:not([solid]) {
-    border: 0.2rem solid $main-color;
-    background-color: white;
-    color: $main-color;
+
+  .button:not([solid]) {
+    border: 0.2rem solid $secondary-color-darker;
+    color: $text-color;
   }
-  .challenge[solid] {
+
+  .button[solid] {
+    border: 0.2rem solid $main-color-darker;
+    color: $text-color;
     background-color: $main-color;
-    color: white;
   }
 
   .help {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 3rem;
+    display: inline-block;
+    color: $icon-color;
     padding: 1rem;
-    text-align: center;
+    width: 10%;
   }
 }
