@@ -17,8 +17,17 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     let id: number = +this.route.snapshot.paramMap.get('id');
-    this.challenges = this.dataservice.getChallenges(id);
-    console.log(this.challenges);
+    this.challenges = this.dataservice.getCategories().subscribe((categories) => {
+      for (let cat of categories) {
+        // find category,
+        if (cat.id == id) {
+          // return its Challenges
+          this.challenges = cat.challenges;
+          return;
+        }
+      }
+    });
+    // console.log(this.challenges);
     // let id: number = +this.route.snapshot.paramMap.get('id');
     // // no id given, take main challenge categories
     // if (!id) {
