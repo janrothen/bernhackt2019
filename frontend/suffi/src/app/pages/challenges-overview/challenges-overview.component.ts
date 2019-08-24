@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { faUtensils, faCarSide, faHome, faTshirt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-challenges-overview',
@@ -17,10 +18,10 @@ export class ChallengesOverviewComponent implements OnInit {
     let id: number = +this.route.snapshot.paramMap.get('id');
     if (!id) {
       this.challenges = [
-        {id: 1, label: "Nahrung", solid: true},
-        {id: 2, label: "Verkehr", solid: true},
-        {id: 3, label: "Wohnen", solid: false},
-        {id: 4, label: "Kleidung", solid: false}
+        {id: 1, label: "Foodwaste", solid: true, icon: faUtensils},
+        {id: 2, label: "Verkehr", solid: true, icon: faCarSide},
+        {id: 3, label: "Wohnen", solid: false, icon: faHome},
+        {id: 4, label: "Kleidung", solid: false, icon: faTshirt}
       ];
     } else {
       switch (id) {

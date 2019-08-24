@@ -3,6 +3,11 @@
 .challenge-button {
   border-radius: $button-radius;
   background-color: $secondary-color;
+  
+  .challenge-icon {
+    color: black;
+    width: 5rem;
+  }
 
   .challenge {
     display: block;
