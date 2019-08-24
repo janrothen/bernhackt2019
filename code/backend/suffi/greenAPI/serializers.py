@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Category, Challenge, Option, ActiveChallenge
+from .models import Category, Challenge, Option, ActiveChallenge, Trophy
 
 class ActiveChallengeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,6 +27,10 @@ class OptionSerializer(serializers.ModelSerializer):
         model = Option
         fields = ['id', 'title', 'co2', 'challenge']
 
+class TrophySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trophy
+        fields = ['id', 'icon', 'label', 'challenge']
 
 class ChallengeSerializer(serializers.ModelSerializer):
     options = OptionSerializer(many=True, read_only=True)
