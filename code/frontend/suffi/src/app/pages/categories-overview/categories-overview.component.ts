@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesOverviewComponent implements OnInit {
   private challenges: any = [
-    {id: 1, label: "Nahrung", icon: ['fas', 'utensils'], solid: true, childs: [11,12,13,14,15]},
-    {id: 2, label: "Verkehr", icon: ['fas', 'car'], solid: true},
-    {id: 3, label: "Wohnen", icon: ['fas', 'home'], solid: false},
-    {id: 4, label: "Kleidung", icon: ['fas', 'tshirt'], solid: false},
+    {id: 1, label: "Nahrung", icon: 'utensils', solid: true, childs: [11,12,13,14,15]},
+    {id: 2, label: "Verkehr", icon: 'car', solid: true},
+    {id: 3, label: "Wohnen", icon: 'home', solid: false},
+    {id: 4, label: "Kleidung", icon: 'tshirt', solid: false},
     {id: 11, label: "Regional", solid: true},
     {id: 12, label: "Saisonal", solid: true},
     {id: 13, label: "Fertigprodukte", solid: false},
