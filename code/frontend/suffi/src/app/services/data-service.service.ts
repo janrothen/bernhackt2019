@@ -10,10 +10,10 @@ export class DataServiceService {
 
   public getCategories(): Category[] {
     return [
-      {id: 1, label: "Nahrung", icon: ['fas', 'utensils'], solid: true, challenges: []},
-      {id: 2, label: "Verkehr", icon: ['fas', 'car'], solid: true, challenges: []},
-      {id: 3, label: "Wohnen", icon: ['fas', 'home'], solid: false, challenges: []},
-      {id: 4, label: "Kleidung", icon: ['fas', 'tshirt'], solid: false, challenges: []}
+      {id: 1, label: "Nahrung", icon: 'utensils', solid: true, challenges: []},
+      {id: 2, label: "Verkehr", icon: 'car', solid: true, challenges: []},
+      {id: 3, label: "Wohnen", icon: 'home', solid: false, challenges: []},
+      {id: 4, label: "Kleidung", icon: 'tshirt', solid: false, challenges: []}
     ] as Category[];
   }
 }

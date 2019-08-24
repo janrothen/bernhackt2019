@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import Utils from './../../utility/utils';
 import { Category, Challenge } from '../../services/data-service.service';
 
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +12,7 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 export class ChallengeButtonComponent implements OnInit {
   @Input() challenge: Category | Challenge;
   private route: string;
+  private icon: any;
 
   faQuestionCircle = faQuestionCircle
 
@@ -22,6 +24,7 @@ export class ChallengeButtonComponent implements OnInit {
     if (this.challenge as Category) {
       this.route = '/category';
     }
+    this.icon = Utils.iconConfigurationForLabel(this.challenge.icon)
   }
 
 }
