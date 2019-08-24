@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChallengesOverviewComponent implements OnInit {
   private mainchallenges: any = [
-    {id: 1, label: "Foodwaste", bold: true},
-    {id: 2, label: "Verkehr", bold: true},
-    {id: 3, label: "Wohnen", bold: false},
-    {id: 4, label: "Kleidung", bold: false}
+    {id: 1, label: "Foodwaste", solid: true},
+    {id: 2, label: "Verkehr", solid: true},
+    {id: 3, label: "Wohnen", solid: false},
+    {id: 4, label: "Kleidung", solid: false}
   ];
 
   constructor() { }

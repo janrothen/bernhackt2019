@@ -5,7 +5,8 @@ import { ChallengesOverviewComponent } from './pages/challenges-overview/challen
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: ChallengesOverviewComponent }
+  { path: 'home', component: ChallengesOverviewComponent },
+  { path: 'home/:id', component: ChallengesOverviewComponent }
 ];
 
 @NgModule({

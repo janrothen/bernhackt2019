@@ -1,7 +1,7 @@
 <ul>
   <li *ngFor="let challenge of challenges">
     <div class="challenge-button">
-      <a href="#" class="challenge">{{ challenge.label }}</a>
+      <a routerLink="/home/{{challenge.id}}" class="challenge" [attr.solid]="challenge.solid ? true : null">{{ challenge.label }}</a>
       <a href="#" class="help">?</a>
     </div>
   </li>
