@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // pages
@@ -11,9 +12,9 @@ import { MychallengesComponent } from './structure/mychallenges/mychallenges.com
 import { ChallengesListComponent } from './structure/challenges-list/challenges-list.component';
 import { ChallengeButtonComponent } from './structure/challenge-button/challenge-button.component';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
 
 @NgModule({
   declarations: [
@@ -27,14 +28,15 @@ import { library } from '@fortawesome/fontawesome-svg-core';
   ],
   imports: [
     BrowserModule,
-    FontAwesomeModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(){
-    library.add(fas);
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas);
   }
 }
