@@ -1,0 +1,6 @@
+---
+applications:
+- name: suffi
+  buildpack: staticfile_buildpack
+  memory: 128M
+  path: dist/suffi

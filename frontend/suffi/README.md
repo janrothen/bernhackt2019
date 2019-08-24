@@ -1,5 +1,13 @@
 # Suffi
 
+## Deploy Angular App to Swisscom CloudFoundry
+
+* Registrieren unter https://bernhackt.scapp.io/
+* CloudFoundry CLI installieren https://docs.cloudfoundry.org/cf-cli/install-go-cli.html
+* In Terminal einloggen mit: `cf login -a apikey -u username`
+* AngularApp mit `ng build` bauen
+* In Root Directory mit `cf push` deployen
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
 
 ## Development server
