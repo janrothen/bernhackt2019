@@ -1,3 +1,7 @@
-<app-mychallenges-list [challenges]="activechallenges"></app-mychallenges-list>
+<div *ngIf="activechallenges.lenght !== 0">
+  <h2>Aktive Challenges</h2>
+  <app-mychallenges-list [challenges]="activechallenges"></app-mychallenges-list>
+</div>
 
+<h2>Kategorien</h2>
 <app-challenges-list [challenges]="categories"></app-challenges-list>

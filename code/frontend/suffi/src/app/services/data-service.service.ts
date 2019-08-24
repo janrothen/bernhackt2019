@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class DataServiceService {
   private categoriesUrl = environment.endpoint + 'category';
   private activechallengesUrl = environment.endpoint + 'activeChallenge/';
-  private categories: Category[] = undefined;
+  private categories: Category[] = [];
   private challengesObservable = new Observable<any>();
 
   constructor(private http: HttpClient) { }
@@ -25,14 +25,12 @@ export class DataServiceService {
 
   // maps data received from backend to local models
   mapData(data : any) {
-    console.log('mapping data');
-    console.log(data);
     var categories : Category[] = [];
     if (!data || !data.results || data.results.length == 0) {
       return categories
     }
 
-    data.results.forEach((item, index) => {
+    data.results.forEach((item) => {
       var category = new Category();
       category.id = item.id;
       category.label = item.label;
@@ -71,7 +69,7 @@ export class DataServiceService {
     }
   }
 
-  public createActiveChallenge(activechallenge: Any): Observable<any> {
+  public createActiveChallenge(activechallenge: any): Observable<any> {
     console.log('posting');
     let config = {
             headers: {

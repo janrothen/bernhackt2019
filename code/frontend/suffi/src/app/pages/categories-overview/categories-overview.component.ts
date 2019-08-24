@@ -9,17 +9,6 @@ import { DataServiceService, Category, Challenge } from '../../services/data-ser
 export class CategoriesOverviewComponent implements OnInit {
   private categories: Category[] = [];
   private activechallenges: Challenge[] = [];
-  // private challenges: any = [
-  //   {id: 1, label: "Nahrung", icon: ['fas', 'utensils'], solid: true, childs: [11,12,13,14,15]},
-  //   {id: 2, label: "Verkehr", icon: ['fas', 'car'], solid: true},
-  //   {id: 3, label: "Wohnen", icon: ['fas', 'home'], solid: false},
-  //   {id: 4, label: "Kleidung", icon: ['fas', 'tshirt'], solid: false},
-  //   {id: 11, label: "Regional", solid: true},
-  //   {id: 12, label: "Saisonal", solid: true},
-  //   {id: 13, label: "Fertigprodukte", solid: false},
-  //   {id: 14, label: "Vegetarisch", solid: false},
-  //   {id: 15, label: "Vegan", solid: false}
-  // ]
 
   constructor(private dataservice: DataServiceService) { }
 
