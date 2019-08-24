@@ -8,7 +8,7 @@ import { DataServiceService, Challenge } from '../../services/data-service.servi
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-  private challenges: any = {};
+  private challenges: Challenge[];
 
   constructor(
     private route: ActivatedRoute,
@@ -17,11 +17,10 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     let id: number = +this.route.snapshot.paramMap.get('id');
-    this.challenges = this.dataservice.getCategories().subscribe((categories) => {
+    this.dataservice.getCategories().subscribe((categories) => {
+      // find category in data tree
       for (let cat of categories) {
-        // find category,
         if (cat.id == id) {
-          // return its Challenges
           this.challenges = cat.challenges;
           return;
         }

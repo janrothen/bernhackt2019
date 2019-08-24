@@ -1,5 +1,7 @@
+@import './../../../library.scss';
+
 div {
-  border-top: 0.2rem #004144 solid;
+  border-bottom: $border-slim $menu-color solid;
 }
 
 p {

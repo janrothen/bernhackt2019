@@ -33,7 +33,7 @@ export class DataServiceService {
 
     data.results.forEach((item, index) => {
       var category = new Category();
-      category.id = index;
+      category.id = item.id;
       category.label = item.label;
       category.help = item.help;
       category.icon = item.icon;
