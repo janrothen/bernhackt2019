@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+// pages
+import { CategoriesOverviewComponent } from './pages/categories-overview/categories-overview.component';
+import { CategoriyComponent } from './pages/categories/category.component';
+// structure
 import { QuicknavbarComponent } from './structure/quicknavbar/quicknavbar.component';
 import { MychallengesComponent } from './structure/mychallenges/mychallenges.component';
 import { ChallengesOverviewComponent } from './pages/challenges-overview/challenges-overview.component';
@@ -10,12 +13,14 @@ import { ChallengesListComponent } from './structure/challenges-list/challenges-
 import { ChallengeButtonComponent } from './structure/challenge-button/challenge-button.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
+    CategoriesOverviewComponent,
+    CategoryComponent,
     QuicknavbarComponent,
     MychallengesComponent,
-    ChallengesOverviewComponent,
     ChallengesListComponent,
     ChallengeButtonComponent
   ],

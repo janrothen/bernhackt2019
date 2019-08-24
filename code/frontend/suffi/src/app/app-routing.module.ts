@@ -5,9 +5,9 @@ import { ChallengesOverviewComponent } from './pages/challenges-overview/challen
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: ChallengesOverviewComponent },
-  { path: 'home/:id', component: ChallengesOverviewComponent }
+  { path: '', redirectTo: 'challenges', pathMatch: 'full' },
+  { path: 'challenges', component: ChallengesOverviewComponent },
+  { path: 'challenges/:id', component: ChallengesOverviewComponent }
 ];
 
 @NgModule({
