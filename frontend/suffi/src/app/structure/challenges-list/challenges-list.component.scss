@@ -15,38 +15,3 @@
     }
   }
 }
-
-.challenge-button {
-  border-radius: $button-radius;
-  background-color: $secondary-color;
-
-  .challenge {
-    display: block;
-    margin-right: 3rem;
-    padding: 1rem;
-    border-radius: $button-radius;
-
-    text-align: center;
-    line-height: 1rem;
-  }
-  .challenge:not([solid]) {
-    border: 0.2rem solid $main-color;
-    background-color: white;
-    color: $main-color;
-  }
-  .challenge[solid] {
-    background-color: $main-color;
-    color: white;
-  }
-
-  .help {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 3rem;
-    padding: 1rem;
-    text-align: center;
-  }
-}

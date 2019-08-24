@@ -7,6 +7,7 @@ import { QuicknavbarComponent } from './structure/quicknavbar/quicknavbar.compon
 import { MychallengesComponent } from './structure/mychallenges/mychallenges.component';
 import { ChallengesOverviewComponent } from './pages/challenges-overview/challenges-overview.component';
 import { ChallengesListComponent } from './structure/challenges-list/challenges-list.component';
+import { ChallengeButtonComponent } from './structure/challenge-button/challenge-button.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
@@ -16,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MychallengesComponent,
     ChallengesOverviewComponent,
     ChallengesListComponent,
+    ChallengeButtonComponent
   ],
   imports: [
     BrowserModule,
