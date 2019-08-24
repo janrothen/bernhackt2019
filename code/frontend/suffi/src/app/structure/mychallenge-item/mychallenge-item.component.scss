@@ -1,0 +1,40 @@
+@import './../../../library.scss';
+
+.challenge-element {
+  width: 100%;
+  vertical-align: middle;
+
+  .button {
+    border: none;
+    border-radius: $button-radius;
+    background-color: $active-color;
+
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+  
+    .icon {
+      display: inline-block;
+      color: $icon-color;
+      padding: 2rem;
+      width: 5rem;
+    }
+
+    .label {
+      margin-left: 2rem;
+      font-size: 200%;
+      line-height: 1rem;
+    }
+  }
+
+  .button:not([solid]) {
+    border: 0.2rem solid $active-color-darker;
+    color: $text-color;
+  }
+
+  .button[solid] {
+    border: 0.2rem solid $main-color-darker;
+    color: $text-color;
+    background-color: $main-color;
+  }
+}
