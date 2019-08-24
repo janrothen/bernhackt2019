@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class DataServiceService {
   private categoriesUrl = environment.endpoint + 'category';
-  private activechallengesUrl = environment.endpoint + 'activeChallenge';
+  private activechallengesUrl = environment.endpoint + 'activeChallenge/';
   private categories: Category[] = undefined;
   private challengesObservable = new Observable<any>();
 
@@ -73,6 +73,11 @@ export class DataServiceService {
 
   public createActiveChallenge(activechallenge: Any): Observable<any> {
     console.log('posting');
+    let config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        };
     return this.http.post<any[]>(this.activechallengesUrl, activechallenge);
     // return new Observable((obs) => {
     //   obs.next({});

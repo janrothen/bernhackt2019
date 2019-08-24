@@ -54,8 +54,8 @@ export class ChallengeComponent implements OnInit {
     let activechallenge = {
       user: 4,
       challenge: this.challenge.id,
-      valueStart: this.current,
-      valueGoal: this.goal
+      valueStart: this.challenge.options[this.current].id,
+      valueGoal: this.challenge.options[this.goal].id
     };
     this.dataservice.createActiveChallenge(activechallenge).subscribe((result) => {
       this.router.navigate(['']);
