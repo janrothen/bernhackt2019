@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from suffi.quickstart.models import Category, Challenge
+from suffi.quickstart.models import Category, Challenge, Option
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -15,10 +15,18 @@ class GroupSerializer(serializers.ModelSerializer):
         fields = ['url', 'name']
 
 
+class OptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Option
+        fields = ['title', 'co2', 'challenge']
+
+
 class ChallengeSerializer(serializers.ModelSerializer):
+    options = OptionSerializer(many=True, read_only=True)
+
     class Meta:
         model = Challenge
-        fields = ['icon', 'label', 'info', 'max_impact', 'question', 'category']
+        fields = ['icon', 'label', 'info', 'max_impact', 'question', 'options', 'category']
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -27,3 +35,4 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['icon', 'label', 'help', 'challenges']
+        depth = 1

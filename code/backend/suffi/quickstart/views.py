@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from suffi.quickstart.serializers import UserSerializer, GroupSerializer, CategorySerializer, ChallengeSerializer
-from suffi.quickstart.models import Category, Challenge
+from suffi.quickstart.serializers import UserSerializer, GroupSerializer, CategorySerializer, ChallengeSerializer, OptionSerializer
+from suffi.quickstart.models import Category, Challenge, Option
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -36,3 +36,10 @@ class ChallengeViewSet(viewsets.ModelViewSet):
     """
     queryset = Challenge.objects.all()
     serializer_class = ChallengeSerializer
+
+class OptionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Option.objects.all()
+    serializer_class = OptionSerializer

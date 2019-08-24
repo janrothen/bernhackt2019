@@ -17,3 +17,8 @@ class Challenge(models.Model):
 
     class Meta:
         ordering = ['max_impact']
+
+class Option(models.Model):
+    title = models.SlugField(unique=True, max_length=255)
+    co2 = models.DecimalField(max_digits=10, decimal_places=3)
+    challenge = models.ForeignKey(Challenge, related_name='options', on_delete=models.CASCADE)
