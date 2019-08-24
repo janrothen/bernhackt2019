@@ -25,9 +25,6 @@ SECRET_KEY = 't^@7se=kwtdzaksia6sb^s_o#9z-veg1lk+j&7@q5om28jja2$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'suffi',
 ]
 
 MIDDLEWARE = [
@@ -114,7 +112,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-ALLOWED_HOSTS = ['suffi-api.scapp.io']
+ALLOWED_HOSTS = ['suffi-api.scapp.io', 'localhost']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
