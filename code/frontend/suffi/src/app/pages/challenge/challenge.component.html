@@ -1,4 +1,4 @@
-<div class="challenge">
+<div *ngIf="challenge" class="challenge">
   <div class="title">
     <fa-icon [icon]="icon" class="icon fa-2x"></fa-icon>
     <span class="label">{{ challenge.label }}</span>
@@ -23,7 +23,7 @@
     </label>
     <div *ngIf="goal != null">
       <p>Wenn du dieses Ziel erreichst, sparst du pro Jahr {{ challenge.options[current].co2 - challenge.options[goal].co2 }} kg CO2</p>
-      <button type="button" name="button">Challenge starten!</button>
+      <button type="button" name="button" (click)="startChallenge()">Challenge starten!</button>
     </div>
   </div>
 </div>

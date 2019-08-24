@@ -16,6 +16,7 @@ export class ChallengeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private dataservice: DataServiceService
   ) { }
 
@@ -47,6 +48,12 @@ export class ChallengeComponent implements OnInit {
     // }
     //
     // this.icon = Utils.iconConfigurationForLabel(this.challenge.icon)
+  }
+
+  private startChallenge() {
+    this.dataservice.startChallenge(this.challenge).subscribe((result) => {
+      router.Navigate('');
+    });
   }
 
 }
