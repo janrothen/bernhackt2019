@@ -1,1 +1,6 @@
-<p>mychallenges list works!</p>
+<ul>
+    <li *ngFor="let challenge of challenges">
+      <app-challenge-item [challenge]="challenge"></app-challenge-item>
+    </li>
+  </ul>
+  
