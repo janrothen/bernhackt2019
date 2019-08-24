@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'suffi',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -72,12 +74,28 @@ WSGI_APPLICATION = 'suffi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if 'VCAP_SERVICES' in os.environ:
+    vcap_services = json.loads(os.environ['VCAP_SERVICES'])
+    db_credentials = vcap_services['mariadbent'][0]['credentials']
+    db_uri = db_credentials['uri']
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': db_credentials['name'],
+            'USER': db_credentials['username'],
+            'PASSWORD': db_credentials['password'],
+            'HOST': db_credentials['host'],
+            'PORT': db_credentials['port'],
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
@@ -112,13 +130,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-ALLOWED_HOSTS = ['suffi-api.scapp.io', 'localhost']
+ALLOWED_HOSTS = ['suffi-api.scapp.io', 'localhost', 'suffi-api-test.scapp.io']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
