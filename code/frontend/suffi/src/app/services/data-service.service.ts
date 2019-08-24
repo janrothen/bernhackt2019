@@ -39,7 +39,8 @@ export class DataServiceService {
       }
     );
     
-    return categories;
+    // return categories;
+    return this.getCategories();
   }
 
   public getCategories(): Category[] {
