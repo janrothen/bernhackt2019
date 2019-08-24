@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from suffi.quickstart.serializers import UserSerializer, GroupSerializer, CategorySerializer
-from suffi.quickstart.models import Category
+from suffi.quickstart.serializers import UserSerializer, GroupSerializer, CategorySerializer, ChallengeSerializer
+from suffi.quickstart.models import Category, Challenge
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -21,9 +21,18 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+
 class CategoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    queryset = Group.objects.all()
+    queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+
+class ChallengeViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Challenge.objects.all()
+    serializer_class = ChallengeSerializer
