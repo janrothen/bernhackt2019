@@ -8,16 +8,18 @@ import { MychallengesComponent } from './structure/mychallenges/mychallenges.com
 import { ChallengesOverviewComponent } from './pages/challenges-overview/challenges-overview.component';
 import { ChallengesListComponent } from './structure/challenges-list/challenges-list.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,
     QuicknavbarComponent,
     MychallengesComponent,
     ChallengesOverviewComponent,
-    ChallengesListComponent
+    ChallengesListComponent,
   ],
   imports: [
     BrowserModule,
+    FontAwesomeModule,
     AppRoutingModule
   ],
   providers: [],
