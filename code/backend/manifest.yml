@@ -3,4 +3,7 @@ applications:
 - name: suffi-api
   instances: 1
   memory: 128M
-  command: null
+  command: python manage.py reset_db --noinput && python manage.py migrate && exec gunicorn suffi.wsgi --workers 2
+
+  services:
+  - suffi-db
