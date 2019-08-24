@@ -5,8 +5,23 @@
 
 <p>{{ challenge.info }}</p>
 
-<span>{{ challenge.question }}</span>
-<label *ngFor="let option of challenge.options; let i = index">
+<h4>{{ challenge.question }}</h4>
+<label *ngFor="let option of challenge.options; let i = index" class="option">
   <input type="radio" name="current" [value]="i" [(ngModel)]="current">
   <span>{{ option.title }}</span>
 </label>
+
+<div *ngIf="current == 0">
+  sehr gut
+</div>
+<div *ngIf="current > 0">
+  <h4>Welches Ziel strebst du an?</h4>
+  <label *ngFor="let option of challenge.options; let i = index" class="option">
+    <input type="radio" name="goal" [value]="i" [(ngModel)]="goal">
+    <span>{{ option.title }}</span>
+  </label>
+  <div *ngIf="goal != null">
+    <p>Wenn du dieses Ziel erreichst, sparst du pro Jahr {{ challenge.options[current].co2 - challenge.options[goal].co2 }} kg CO2</p>
+    <button type="button" name="button">Challenge starten!</button>
+  </div>
+</div>

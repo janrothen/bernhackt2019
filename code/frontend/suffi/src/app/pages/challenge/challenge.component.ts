@@ -11,7 +11,8 @@ import Utils from './../../utility/utils';
 export class ChallengeComponent implements OnInit {
   private challenge: any;
   private icon: any;
-  private current: any;
+  private current: number;
+  private goal: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,9 +28,9 @@ export class ChallengeComponent implements OnInit {
       info: 'Dieser Text beschreibt die Challenge',
       question: 'Wie oft isst du Käse?',
       options: [
-        {title: 'täglich', co2: '400'},
+        {title: 'nie', co2: '0'},
         {title: 'selten', co2: '200'},
-        {title: 'nie', co2: '0'}
+        {title: 'täglich', co2: '400'}
       ]
     }
 
