@@ -19,6 +19,13 @@ class Challenge(models.Model):
     class Meta:
         ordering = ['max_impact']
 
+
+class Trophy(models.Model):
+    icon = models.CharField(max_length=255)
+    label = models.CharField(max_length=255)
+    challenge = models.ForeignKey(Challenge, related_name='trophy', on_delete=models.CASCADE)
+
+
 class Option(models.Model):
     title = models.CharField(max_length=255)
     co2 = models.DecimalField(max_digits=10, decimal_places=3)
@@ -30,3 +37,4 @@ class ActiveChallenge(models.Model):
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
     valueStart = models.ForeignKey(Option, related_name='activeChallenges_Start', on_delete=models.CASCADE)
     valueGoal = models.ForeignKey(Option, related_name='activeChallenges_Goal', on_delete=models.CASCADE)
+    challangeComplete = models.BooleanField(default=False)

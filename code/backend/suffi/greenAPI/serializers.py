@@ -5,7 +5,7 @@ from .models import Category, Challenge, Option, ActiveChallenge
 class ActiveChallengeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ActiveChallenge
-        fields = ['challenge', 'valueStart', 'valueGoal', 'user']
+        fields = ['id', 'challenge', 'valueStart', 'valueGoal', 'user']
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -13,19 +13,19 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'groups', 'activeChallenges']
+        fields = ['id','url', 'username', 'email', 'groups', 'activeChallenges']
 
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = ['url', 'name']
+        fields = ['id', 'url', 'name']
 
 
 class OptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Option
-        fields = ['title', 'co2', 'challenge']
+        fields = ['id', 'title', 'co2', 'challenge']
 
 
 class ChallengeSerializer(serializers.ModelSerializer):
@@ -33,7 +33,7 @@ class ChallengeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Challenge
-        fields = ['icon', 'label', 'info', 'max_impact', 'question', 'options', 'category']
+        fields = ['id', 'icon', 'label', 'info', 'max_impact', 'question', 'options', 'category']
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -41,5 +41,5 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ['icon', 'label', 'help', 'challenges']
+        fields = ['id', 'icon', 'label', 'help', 'challenges']
         depth = 1
