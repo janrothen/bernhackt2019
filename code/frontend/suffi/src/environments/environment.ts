@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endpoint: 'http://suffi-api.scapp.io/'
+  endpoint: 'https://suffi-api.scapp.io/'
 };
 
 /*

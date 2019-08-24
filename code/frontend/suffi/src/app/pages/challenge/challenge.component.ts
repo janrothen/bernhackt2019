@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { DataServiceService, Challenge } from '../../services/data-service.service'
+import { DataServiceService, Challenge, ActiveChallenge } from '../../services/data-service.service'
 import Utils from './../../utility/utils';
 
 @Component({
@@ -51,8 +51,14 @@ export class ChallengeComponent implements OnInit {
   }
 
   private startChallenge() {
-    this.dataservice.startChallenge(this.challenge).subscribe((result) => {
-      router.Navigate('');
+    let activechallenge = {
+      user: 4,
+      challenge: this.challenge.id,
+      valueStart: this.current,
+      valueGoal: this.goal
+    };
+    this.dataservice.createActiveChallenge(activechallenge).subscribe((result) => {
+      this.router.navigate(['']);
     });
   }
 

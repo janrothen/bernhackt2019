@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class DataServiceService {
   private categoriesUrl = environment.endpoint + 'category';
-  private activechallengesUrl = environment.endpoint + 'activechallenges';
+  private activechallengesUrl = environment.endpoint + 'activeChallenge';
   private categories: Category[] = undefined;
   private challengesObservable = new Observable<any>();
 
@@ -71,13 +71,13 @@ export class DataServiceService {
     }
   }
 
-  public startChallenge(challenge: Challenge): Observable<any> {
+  public createActiveChallenge(activechallenge: Any): Observable<any> {
     console.log('posting');
-    // return this.http.post<any[]>(this.categoriesUrl, {challenge: challenge.id});
-    return new Observable((obs) => {
-      obs.next({});
-      obs.complete();
-    })
+    return this.http.post<any[]>(this.activechallengesUrl, activechallenge);
+    // return new Observable((obs) => {
+    //   obs.next({});
+    //   obs.complete();
+    // })
   }
 
   // // get challenges for category from cache or remote if: not cached or forced reload
