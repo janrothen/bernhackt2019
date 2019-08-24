@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class DataServiceService {
   private categoriesUrl = environment.endpoint + 'category';
   private activechallengesUrl = environment.endpoint + 'activeChallenge/';
-  private categories: Category[] = [];
+  private categories: Category[] = undefined;
   private challengesObservable = new Observable<any>();
 
   constructor(private http: HttpClient) { }
