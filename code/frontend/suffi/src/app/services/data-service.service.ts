@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
   providedIn: 'root'
