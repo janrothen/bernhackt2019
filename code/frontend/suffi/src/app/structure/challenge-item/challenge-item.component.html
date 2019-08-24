@@ -3,7 +3,7 @@
     <fa-icon [icon]="icon" class="icon fa-2x"></fa-icon>
     <span class="label">{{ challenge.label }}</span>
   </a>
-  <div *ngIf="challenge.help != 0" class="help">
+  <div *ngIf="challenge.help != undefined && challenge.help != 0" class="help">
     <a [routerLink]="['/help', challenge.help]" class="help"><fa-icon [icon]="faQuestionCircle" class="icon far fa-2x"></fa-icon></a>
   </div>
 </div>
