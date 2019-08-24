@@ -1,11 +1,14 @@
 <div *ngIf="challenge" class="challenge w3-container w3-animate-opacity">
   <div class="title">
-    <fa-icon [icon]="icon" class="icon fa-2x"></fa-icon>
+    <fa-icon [icon]="icon" class="icon fa-3x"></fa-icon>
     <span class="label">{{ challenge.label }}</span>
   </div>
 
-  <p>{{ challenge.info }}</p>
-
+  <div class="info">
+    <h4>Information zur Challenge</h4>
+    <p>{{ challenge.info }}</p>
+  </div>
+  
   <h4>{{ challenge.question }}</h4>
   <label *ngFor="let option of challenge.options; let i = index" class="option">
     <input type="radio" name="current" [value]="i" [(ngModel)]="current">

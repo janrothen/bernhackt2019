@@ -3,6 +3,7 @@
 .challenge {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 4rem;
   display: block;
 
   border: 0.2rem solid $secondary-color-darker;
@@ -12,7 +13,7 @@
   background-color: $secondary-color;
 
   text-decoration: none;  
-  width: 80%;
+  width: 66%;
 
   .icon {
     display: inline-block;
@@ -25,6 +26,10 @@
     margin-left: 2rem;
     font-size: 200%;
     line-height: 1rem;
+  }
+
+  .info {
+    margin-bottom: 2rem;
   }
 }
 
