@@ -1,9 +1,30 @@
 :host {
-  flex: 0 0 3rem;
+  flex: 0 0 5rem;
 
-  ul {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+  nav {
+    margin-top: 1rem;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        flex: 1 1 30%;
+        text-align: center;
+
+        a {
+          display: block;
+
+          fa-icon {
+            display: block;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
   }
 }

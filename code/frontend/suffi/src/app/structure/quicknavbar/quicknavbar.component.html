@@ -1,13 +1,22 @@
 <nav>
   <ul>
     <li>
-      <a href="#">Challenges</a>
+      <a routerLink="categories">
+        <fa-icon [icon]="['fas','running']" class="icon fa-2x"></fa-icon>
+        <span class="label">Challenges</span>
+      </a>
     </li>
     <li>
-      <a href="#">Trophies</a>
+      <a routerLink="categories">
+        <fa-icon [icon]="['fas','trophy']" class="icon fa-2x"></fa-icon>
+        <span class="label">Auszeichnungen</span>
+      </a>
     </li>
     <li>
-      <a href="#">Community</a>
+      <a routerLink="categories">
+        <fa-icon [icon]="['fas','users']" class="icon fa-2x"></fa-icon>
+        <span class="label">Freunde</span>
+      </a>
     </li>
   </ul>
 </nav>

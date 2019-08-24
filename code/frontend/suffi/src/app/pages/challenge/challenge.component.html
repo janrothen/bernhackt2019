@@ -1,0 +1,12 @@
+<div class="title">
+  <fa-icon [icon]="icon" class="icon fa-2x"></fa-icon>
+  <span class="label">{{ challenge.label }}</span>
+</div>
+
+<p>{{ challenge.info }}</p>
+
+<span>{{ challenge.question }}</span>
+<label *ngFor="let option of challenge.options; let i = index">
+  <input type="radio" name="current" [value]="i" [(ngModel)]="current">
+  <span>{{ option.title }}</span>
+</label>
