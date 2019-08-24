@@ -25,6 +25,7 @@ router.register(r'category', views.CategoryViewSet)
 router.register(r'challenge', views.ChallengeViewSet)
 router.register(r'option', views.OptionViewSet)
 router.register(r'activeChallenge', views.ActiveChallengeViewSet)
+router.register(r'trophy', views.TrophyViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
