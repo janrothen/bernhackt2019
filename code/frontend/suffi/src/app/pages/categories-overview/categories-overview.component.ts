@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataServiceService, Category } from '../../services/data-service.service';
+import { DataServiceService, Category, Challenge } from '../../services/data-service.service';
 
 @Component({
   selector: 'app-categories-overview',
@@ -8,6 +8,7 @@ import { DataServiceService, Category } from '../../services/data-service.servic
 })
 export class CategoriesOverviewComponent implements OnInit {
   private categories: Category[] = [];
+  private activechallenges: Challenge[] = [];
   // private challenges: any = [
   //   {id: 1, label: "Nahrung", icon: ['fas', 'utensils'], solid: true, childs: [11,12,13,14,15]},
   //   {id: 2, label: "Verkehr", icon: ['fas', 'car'], solid: true},
@@ -28,6 +29,7 @@ export class CategoriesOverviewComponent implements OnInit {
     .subscribe(
       (categories) => {
         this.categories = categories;
+        this.activechallenges = this.categories[0].challenges;
       }
     )
   }
