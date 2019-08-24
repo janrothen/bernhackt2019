@@ -16,7 +16,7 @@ import { QuicknavbarComponent } from './structure/quicknavbar/quicknavbar.compon
 import { MyChallengesListComponent } from './structure/mychallenges-list/mychallenges-list.component';
 import { MyChallengeItemComponent } from './structure/mychallenge-item/mychallenge-item.component';
 import { ChallengesListComponent } from './structure/challenges-list/challenges-list.component';
-import { ChallengeButtonComponent } from './structure/challenge-button/challenge-button.component';
+import { ChallengeItemComponent } from './structure/challenge-item/challenge-item.component';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
@@ -29,7 +29,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
     CategoryComponent,
     QuicknavbarComponent,
     ChallengesListComponent,
-    ChallengeButtonComponent,
+    ChallengeItemComponent,
     MyChallengesListComponent,
     MyChallengeItemComponent,
     HelpComponent,
