@@ -1,8 +1,19 @@
 @import './../../../library.scss';
 
+.challenge-element {
+  width: 100%;
+  background-color: red;
+}
+
 .challenge-button {
+  border: none;
   border-radius: $button-radius;
   background-color: $secondary-color;
+  padding: 15px 32px;
+  width: 70%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 
   .ng-fa-icon {
     display: inline-block;
