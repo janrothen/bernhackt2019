@@ -21,7 +21,7 @@ export class ChallengeButtonComponent implements OnInit {
   ngOnInit() {
     console.log(this.challenge);
     this.route = '/challenge';
-    if (this.challenge as Category) {
+    if (this.challenge['isCategory']) {
       this.route = '/category';
     }
     this.icon = Utils.iconConfigurationForLabel(this.challenge.icon)
