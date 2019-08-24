@@ -1,38 +1,49 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from './../../environments/environment';
+import {Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataServiceService {
-  restItems: any;
-  restItemsUrl = 'https://public-api.wordpress.com/rest/v1.1/sites/vocon-it.com/posts';
+  categoriesUrl = environment.endpoint + 'category';
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-    this.getRestItems();
-    console.log(this.restItems);
-  }
-  
-  getRestItems(): void {
-    this.restItemsServiceGetRestItems()
-      .subscribe(
-        restItems => {
-          this.restItems = restItems;
-          console.log(this.restItems);
-        }
-      )
+  getCategoriesFromBackend(): Observable<any> {
+    return this.http
+      .get<any[]>(this.categoriesUrl)
+      .pipe(map(data => this.mapData(data)));
   }
 
-  restItemsServiceGetRestItems() {
-    return this.http
-      .get<any[]>(this.restItemsUrl)
-      .pipe(map(data => data));
+  mapData(data : any) {
+    var categories : Category[] = [];
+    if (!data || !data.results || data.results.length == 0) {
+      return categories
+    }
+
+    data.results.forEach((item, index) => {
+      var category = new Category();
+      category.id = index;
+      category.label = item.label;
+      category.help = item.help;
+      category.icon = item.icon;
+      category.solid = true;
+      category.isCategory = true;
+
+      categories.push(category);
+      console.log(item);
+      console.log("getCategoriesFromBackend()" + item);
+      }
+    );
+    
+    return categories;
   }
 
   public getCategories(): Category[] {
+
     return [
       {id: 1, label: "Nahrung", icon: 'utensils', help: 1, solid: true, isCategory: true},
       {id: 2, label: "Verkehr", icon: 'car', help: 2, solid: true, isCategory: true},
@@ -43,9 +54,9 @@ export class DataServiceService {
 
   public getChallenges(categoryid: number): Challenge[] {
     let challenges: Challenge[] = [
-      {id: 1, label: "Regional", icon: 'utensils', help: 0, solid: true, category: 1, info: 'kaufe regional', question: 'wie oft kaufst du regional', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]},
+      {id: 1, label: "Regional", icon: 'leaf', help: 0, solid: true, category: 1, info: 'kaufe regional', question: 'wie oft kaufst du regional', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]},
       {id: 2, label: "Saisonal", icon: 'utensils', help: 0, solid: true, category: 1, info: 'kaufe saisonal', question: 'wie oft kaufst du saisonal', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]},
-      {id: 3, label: "Vegan", icon: 'utensils', help: 0, solid: false, category: 1, info: 'lebe vegan', question: 'wie oft verzichtest du auf fleisch', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]},
+      {id: 3, label: "Vegan", icon: 'leaf', help: 0, solid: false, category: 1, info: 'lebe vegan', question: 'wie oft verzichtest du auf fleisch', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]},
       {id: 4, label: "ÖV", icon: 'car', help: 0, solid: true, category: 2, info: 'öv', question: 'du öv?', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]},
       {id: 5, label: "Ferien", icon: 'car', help: 0, solid: true, category: 2, info: 'ferien', question: 'urlaub?', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]}
     ]

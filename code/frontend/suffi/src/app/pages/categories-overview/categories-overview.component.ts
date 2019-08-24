@@ -23,8 +23,11 @@ export class CategoriesOverviewComponent implements OnInit {
   constructor(private dataservice: DataServiceService) { }
 
   ngOnInit() {
-    this.categories = this.dataservice.getCategories();
-    console.log(this.categories);
+    this.dataservice.getCategoriesFromBackend()
+    .subscribe(
+      categories => {
+        this.categories = categories;
+      }
+    )
   }
-
 }
