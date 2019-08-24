@@ -12,6 +12,8 @@ import { ChallengesListComponent } from './structure/challenges-list/challenges-
 import { ChallengeButtonComponent } from './structure/challenge-button/challenge-button.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 @NgModule({
   declarations: [
@@ -31,4 +33,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(){
+    library.add(fas);
+  }
+}
