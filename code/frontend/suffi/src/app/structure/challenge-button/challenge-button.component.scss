@@ -4,13 +4,14 @@
   border-radius: $button-radius;
   background-color: $secondary-color;
   
-  .challenge-icon {
-    color: black;
+  .ng-fa-icon {
+    display: inline-block;
+    padding: 1rem;
     width: 5rem;
   }
 
   .challenge {
-    display: block;
+    display: inline-block;
     margin-right: 3rem;
     padding: 1rem;
     border-radius: $button-radius;
