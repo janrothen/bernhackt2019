@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { DataServiceService, Challenge } from '../../services/data-service.service'
+import { DataServiceService, Challenge, ActiveChallenge } from '../../services/data-service.service'
 import Utils from './../../utility/utils';
 
 @Component({
@@ -16,6 +16,7 @@ export class ChallengeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private dataservice: DataServiceService
   ) { }
 
@@ -47,6 +48,18 @@ export class ChallengeComponent implements OnInit {
     // }
     //
     // this.icon = Utils.iconConfigurationForLabel(this.challenge.icon)
+  }
+
+  private startChallenge() {
+    let activechallenge = {
+      user: 4,
+      challenge: this.challenge.id,
+      valueStart: this.challenge.options[this.current].id,
+      valueGoal: this.challenge.options[this.goal].id
+    };
+    this.dataservice.createActiveChallenge(activechallenge).subscribe((result) => {
+      this.router.navigate(['']);
+    });
   }
 
 }

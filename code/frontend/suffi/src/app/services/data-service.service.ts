@@ -8,8 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataServiceService {
-  categoriesUrl = environment.endpoint + 'category';
-  private categories: Category[] = undefined;
+  private categoriesUrl = environment.endpoint + 'category';
+  private activechallengesUrl = environment.endpoint + 'activeChallenge/';
+  private categories: Category[] = [];
   private challengesObservable = new Observable<any>();
 
   constructor(private http: HttpClient) { }
@@ -24,14 +25,12 @@ export class DataServiceService {
 
   // maps data received from backend to local models
   mapData(data : any) {
-    console.log('mapping data');
-    console.log(data);
     var categories : Category[] = [];
     if (!data || !data.results || data.results.length == 0) {
       return categories
     }
 
-    data.results.forEach((item, index) => {
+    data.results.forEach((item) => {
       var category = new Category();
       category.id = item.id;
       category.label = item.label;
@@ -56,7 +55,7 @@ export class DataServiceService {
     if (forcedReload || this.categories == undefined) {
       console.log('... loading from remote');
       let obs = this.http.get<any[]>(this.categoriesUrl)
-      .pipe(map(data => this.mapData(data)));
+        .pipe(map(data => this.mapData(data)));
       // fill cache
       obs.subscribe((categories) => {this.categories = categories;})
       return obs;
@@ -68,6 +67,20 @@ export class DataServiceService {
         obs.complete();
       })
     }
+  }
+
+  public createActiveChallenge(activechallenge: any): Observable<any> {
+    console.log('posting');
+    let config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        };
+    return this.http.post<any[]>(this.activechallengesUrl, activechallenge);
+    // return new Observable((obs) => {
+    //   obs.next({});
+    //   obs.complete();
+    // })
   }
 
   // // get challenges for category from cache or remote if: not cached or forced reload
@@ -140,4 +153,15 @@ export class Challenge extends Categorised {
   public question: string;
   public options: string[];
   public impacts: number[];
+}
+
+// ActiveChallenge: (per user*) challenges that have been started
+// *= to do
+export class ActiveChallenge {
+  public id: number;
+  public user: number;
+  public challenge: Challenge;
+  public valueStart: number;
+  public valueGoal: number;
+  public complete: boolean;
 }
