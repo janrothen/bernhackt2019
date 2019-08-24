@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'library';
+
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}

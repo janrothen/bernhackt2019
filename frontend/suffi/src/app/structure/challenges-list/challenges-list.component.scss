@@ -1,0 +1,30 @@
+@import './../../../library';
+
+:host {
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 2rem;
+
+    li {
+      flex: 0 0 3rem;
+      margin: 1rem 0;
+    }
+  }
+}
+
+.challenge-button {
+  border-radius: 0.4rem;
+  background-color: $secondary-color;
+
+  .challenge {
+    margin-right: 3rem;
+    border-radius: 0.4rem;
+    background-color: $main-color;
+    text-align: center;
+    line-height: 3rem;
+  }
+}
