@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id','url', 'username', 'email', 'groups', 'activeChallenges']
+        fields = ['id', 'url', 'username', 'email', 'groups', 'activeChallenges']
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -37,7 +37,7 @@ class ChallengeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Challenge
-        fields = ['id', 'icon', 'label', 'info', 'max_impact', 'question', 'options', 'category']
+        fields = ['id', 'icon', 'label', 'info', 'max_impact', 'question', 'options', 'trophy', 'category']
 
 
 class CategorySerializer(serializers.ModelSerializer):
