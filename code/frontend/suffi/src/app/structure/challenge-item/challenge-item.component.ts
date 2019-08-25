@@ -26,5 +26,4 @@ export class ChallengeItemComponent implements OnInit {
     }
     this.icon = Utils.iconConfigurationForLabel(this.challenge.icon)
   }
-
 }

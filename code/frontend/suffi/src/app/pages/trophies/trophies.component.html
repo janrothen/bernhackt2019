@@ -1,1 +1,6 @@
-<p>trophies works!</p>
+<h2>Meine Auszeichnungen</h2>
+<ul>
+  <li *ngFor="let trophy of trophies">
+    <app-trophy-item [trophy]="trophy"></app-trophy-item>
+  </li>
+</ul>

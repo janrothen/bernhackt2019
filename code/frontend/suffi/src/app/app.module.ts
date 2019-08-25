@@ -23,6 +23,7 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { HeaderComponent } from './structure/header/header.component';
 import { FooterComponent } from './structure/footer/footer.component';
+import { TrophyItemComponent } from './structure/trophy-item/trophy-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { FooterComponent } from './structure/footer/footer.component';
     TrophiesComponent,
     FriendsComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    TrophyItemComponent
   ],
   imports: [
     BrowserModule,

@@ -10,11 +10,13 @@ import { Observable } from 'rxjs';
 export class DataServiceService {
   private categoriesUrl = environment.endpoint + 'category';
   private activechallengesUrl = environment.endpoint + 'activeChallenge/';
+  private trophiesUrl = environment.endpoint + 'trophy/';
+
   private categories: Category[] = undefined;
   private activechallenges: ActiveChallenge[] = undefined;
   private challenges: Challenge[] = undefined;
   private options: Option[] = undefined;
-  private trophies: Trophy
+  private trophies: Trophy[] = undefined;
 
   constructor(private http: HttpClient) { }
 
@@ -54,6 +56,17 @@ export class DataServiceService {
     return this.activechallenges;
   }
 
+  // map data, cache and transform references(id) to actual object references
+  private mapTrophies(data: any): Trophy[] {
+    this.trophies = [];
+    if (!data || !data.results || data.results.length == 0) {
+      return this.trophies;
+    }
+    this.trophies = data.results as Trophy[];
+    console.log(this.trophies);
+    return this.trophies;
+  }
+  
   // resolves numeric references to object references
   private resolveActiveChallenges() {
     this.getCategories().subscribe((categories) => {
@@ -137,6 +150,24 @@ export class DataServiceService {
       })
     }
   }
+
+  // get categories from cache or remote if: not cached or forced reload
+  public getTrophies(forcedReload: boolean = false): Observable<any> {
+    // load from remote
+    if (forcedReload || this.trophies == undefined) {
+      console.log('... loading trophies from remote');
+      return this.http.get<any[]>(this.trophiesUrl)
+        .pipe(map(data => this.mapTrophies(data)));
+    // load from cache
+    } else {
+      console.log('... using cached trophies');
+      return new Observable((obs) => {
+        obs.next(this.categories);
+        obs.complete();
+      })
+    }
+  }
+
   public uncacheActiveChallenges() {
     this.activechallenges = undefined;
   }

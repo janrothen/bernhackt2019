@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DataServiceService, Challenge, ActiveChallenge } from '../../services/data-service.service'
+import { DataServiceService, ActiveChallenge } from '../../services/data-service.service'
 
 @Component({
   selector: 'app-mychallenges-list',
