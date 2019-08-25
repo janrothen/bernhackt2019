@@ -1,14 +1,14 @@
 ,label,category,icon,max_impact,question,trophy_label,option_title,option_co2
 0,Lokal und Regional einkaufen,Lebensmittel,utensils,0.55,Wie viel saisonales Obst und Gemüse kaufen Sie ein?,Sensationell Saisonal,,
-1,Milchprodukte,Lebensmittel,utensils,1.16,Wie oft konsumieren Sie Milch und Milchprodukte?,Kein Milchbubi,2 – 4 Mal täglich,1.16
-2,Milchprodukte,Lebensmittel,utensils,1.16,Wie oft konsumieren Sie Milch und Milchprodukte?,Kein Milchbubi,1 – 2 Mal täglich,0.58
-3,Milchprodukte,Lebensmittel,utensils,1.16,Wie oft konsumieren Sie Milch und Milchprodukte?,Kein Milchbubi,1 – 6 Mal pro Woche,0.2
 4,Milchprodukte,Lebensmittel,utensils,1.16,Wie oft konsumieren Sie Milch und Milchprodukte?,Kein Milchbubi,weniger oder nie,0.0
+3,Milchprodukte,Lebensmittel,utensils,1.16,Wie oft konsumieren Sie Milch und Milchprodukte?,Kein Milchbubi,1 – 6 Mal pro Woche,0.2
+2,Milchprodukte,Lebensmittel,utensils,1.16,Wie oft konsumieren Sie Milch und Milchprodukte?,Kein Milchbubi,1 – 2 Mal täglich,0.58
+1,Milchprodukte,Lebensmittel,utensils,1.16,Wie oft konsumieren Sie Milch und Milchprodukte?,Kein Milchbubi,2 – 4 Mal täglich,1.16
 5,Eier,Lebensmittel,utensils,0.12,Wie oft essen Sie Eier?,Keine Eier,,
-6,Fleisch und Fisch,Lebensmittel,utensils,1.42,"Wie oft essen Sie Gerichte, die Fleisch oder Fisch enthalten?",I <3 Vegi,2 – 3 Mal pro Tag,1.21
-7,Fleisch und Fisch,Lebensmittel,utensils,1.42,"Wie oft essen Sie Gerichte, die Fleisch oder Fisch enthalten?",I <3 Vegi,Einmal täglich,0.63
-8,Fleisch und Fisch,Lebensmittel,utensils,1.42,"Wie oft essen Sie Gerichte, die Fleisch oder Fisch enthalten?",I <3 Vegi,1 – 6 Mal pro Woche,0.24
 9,Fleisch und Fisch,Lebensmittel,utensils,1.42,"Wie oft essen Sie Gerichte, die Fleisch oder Fisch enthalten?",I <3 Vegi,weniger oder nie,0.0
+8,Fleisch und Fisch,Lebensmittel,utensils,1.42,"Wie oft essen Sie Gerichte, die Fleisch oder Fisch enthalten?",I <3 Vegi,1 – 6 Mal pro Woche,0.24
+7,Fleisch und Fisch,Lebensmittel,utensils,1.42,"Wie oft essen Sie Gerichte, die Fleisch oder Fisch enthalten?",I <3 Vegi,Einmal täglich,0.63
+6,Fleisch und Fisch,Lebensmittel,utensils,1.42,"Wie oft essen Sie Gerichte, die Fleisch oder Fisch enthalten?",I <3 Vegi,2 – 3 Mal pro Tag,1.21
 10,Label Produkte,Lebensmittel,utensils,0.63,"Welchen Anteil haben Label-Produkte (Bio, MSC, Fair Trade) an Ihrem Einkauf?",***Bio***,,
 11,Lebensmittel Wegwerfen,Lebensmittel,utensils,1.6,Wie häufig werfen Sie Lebensmittel weg?,No Waste!,,
 12,Autofahren oder Motorradfahren,Verkehr,car,5.6,"Wie viele Kilometer legen Sie jährlich per Auto oder Motorrad ausserhalb der Arbeitszeit, lenkend oder als Fahrgast zurück?",Stubehocker,,

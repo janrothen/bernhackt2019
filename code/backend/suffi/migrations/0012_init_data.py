@@ -13,12 +13,12 @@ def init_data(apps, schema_editor):
     cat_labels = ["Lebensmittel", "Verkehr", "Wohnen", "Kleider und Schuhe"]
     cat_icons = ["utensils", "car", "home", "tshirt"]
     for cat_label, cat_icon in zip(cat_labels, cat_icons):
-        help = "Very useful information about" + cat_label
+        help = "Very useful information about " + cat_label
         cat = Category(icon=cat_icon, label=cat_label, help=help)
         cat.save()
         # init Challange table
         for idx, row in df.loc[df.category==cat_label].drop_duplicates('label').iterrows():
-            info = "The " + row.label + " challange is a very good challange!"
+            info = "The " + row.label + " challenge is a very good challenge!"
             challange = Challenge(icon=row.icon,
                                   label=row.label,
                                   info=info,
