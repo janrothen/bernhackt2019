@@ -1,6 +1,7 @@
 <div class="challenge-item w3-container w3-animate-opacity">
-  <a [routerLink]="[route, challenge.id]" class="button" [attr.solid]="challenge.solid ? true : null">
+  <a [routerLink]="['challenge', activechallenge.challenge.id]" class="button" [attr.solid]="activechallenge.challenge.solid ? true : null">
     <fa-icon [icon]="icon" class="icon fa-2x"></fa-icon>
-    <span class="label">{{ challenge.label }}</span>
+    <span class="label">{{ activechallenge.challenge.label }}</span>
+    <span>{{ activechallenge.challenge.question }} - dein Ziel: {{ activechallenge.valueGoal.title }}</span>
   </a>
 </div>
