@@ -1,4 +1,4 @@
-# Suffi-API
+# Suffi
 
 ## Deploy Python App to Swisscom CloudFoundry
 
