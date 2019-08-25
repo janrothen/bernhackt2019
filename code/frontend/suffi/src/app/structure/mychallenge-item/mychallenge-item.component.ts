@@ -9,18 +9,15 @@ import { Challenge, ActiveChallenge } from '../../services/data-service.service'
 })
 export class MyChallengeItemComponent implements OnInit {
   @Input() activechallenge: ActiveChallenge;
-  // private challenge: Challenge;
-  // private route: string;
-  private icon: any;
 
   constructor() { }
 
   ngOnInit() {
-    // this.route = '/challenge';
-    // if (this.challenge['isCategory']) {
-    //   this.route = '/category';
-    // }
-    // this.challenge = this.activechallenge.challenge;
-    this.icon = Utils.iconConfigurationForLabel(this.activechallenge.challenge.icon)
+  }
+
+  // done by getter so (async) changes on challenge are respected
+  private getIcon() {
+    let challenge: Challenge = this.activechallenge.challenge as Challenge;
+    return Utils.iconConfigurationForLabel(challenge.icon)
   }
 }

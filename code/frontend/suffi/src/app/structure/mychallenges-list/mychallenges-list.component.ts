@@ -15,8 +15,6 @@ export class MyChallengesListComponent implements OnInit {
   ngOnInit() {
     this.dataservice.getActiveChallenges(4).subscribe((activechallenges) => {
       this.activechallenges = activechallenges as ActiveChallenge[];
-      console.log('*********');
-      console.log(this.activechallenges);
     });
   }
 

@@ -11,94 +11,80 @@ export class DataServiceService {
   private categoriesUrl = environment.endpoint + 'category';
   private activechallengesUrl = environment.endpoint + 'activeChallenge/';
   private categories: Category[] = undefined;
-  // private challengesObservable = new Observable<any>();
   private activechallenges: ActiveChallenge[] = undefined;
   private challenges: Challenge[] = undefined;
   private options: Option[] = undefined;
 
   constructor(private http: HttpClient) { }
 
-  // return an Observable that once finished delivers all categories including
-  // their challenges including challenge's options -- heck, the whole tree
-  getCategoriesFromBackend(): Observable<any> {
-    return this.http
-      .get<any[]>(this.categoriesUrl)
-      .pipe(map(data => this.mapData(data)));
-  }
-
-  // private getActiveChallengesFromBackend(): Observable<any> {
-  //   return this.http
-  //     .get<any[]>(this.activechallengesUrl)
-  //     .pipe((data) => {
-  //       return data as ActiveChallenge[];
-  //     });
-  // }
-
-  // maps data received from backend to local models
-  mapData(data : any) {
-    var categories : Category[] = [];
+  // map data, cache and transform references(id) to actual object references
+  private mapCategories(data: any): Category[] {
+    this.categories = [];
     if (!data || !data.results || data.results.length == 0) {
-      return categories
+      return this.categories;
     }
-
-    data.results.forEach((item) => {
-      var category = new Category();
-      category.id = item.id;
-      category.label = item.label;
-      category.help = item.help;
-      category.icon = item.icon;
-      category.challenges = item.challenges;
-      category.solid = true;
-      category.isCategory = true;
-
-      categories.push(category);
+    this.categories = data.results as Category[];
+    // mark all categories as category for challenge-item button
+    // and extract challenges and options for quick access
+    this.challenges = [];
+    this.options = [];
+    for (let cat of this.categories) {
+      cat.solid = true;
+      cat.isCategory = true;
+      // "collect" this categories challenges
+      this.challenges = this.challenges.concat(cat.challenges);
+      for (let chl of cat.challenges) {
+        // "collect" their options
+        this.options = this.options.concat(chl.options);
       }
-    );
-
-    return categories;
-    // return this.getCategories();
+    }
+    console.log('categories loaded');
+    return this.categories;
   }
 
+  // map data, cache and transform references(id) to actual object references
   private mapActiveChallenges(data: any): ActiveChallenge[] {
     this.activechallenges = [];
     if (!data || !data.results || data.results.length == 0) {
       return this.activechallenges;
     }
-    // map data and transform references(id) to actual object references
     this.activechallenges = data.results as ActiveChallenge[];
     this.resolveActiveChallenges();
-    console.log('****')
-    console.log(this.activechallenges);
     return this.activechallenges;
-    // data.results.forEach((item, index) => {
-    //   activechallenges.push(item as ActiveChallenge);
-    // });
   }
 
   // resolves numeric references to object references
   private resolveActiveChallenges() {
-
     this.getCategories().subscribe((categories) => {
-      // reolve options
-      console.log('calling resolveActiveChallenges()');
       for (let index in this.activechallenges) {
-        if (typeof this.activechallenges[index].challenge === 'number') {
-          let id: number = +this.activechallenges[index].challenge;
-          this.activechallenges[index].challenge = this.getChallengeById(id);
-        }
-        if (typeof this.activechallenges[index].valueStart === 'number') {
-          let id: number = +this.activechallenges[index].valueStart;
-          this.activechallenges[index].valueStart = this.getOptionById(id);
-        }
-        if (typeof this.activechallenges[index].valueGoal === 'number') {
-          let id: number = +this.activechallenges[index].valueGoal;
-          this.activechallenges[index].valueGoal = this.getOptionById(id);
-        }
+        this.resolveNumRef(this.activechallenges[index], 'challenge', (id) => {return this.resolveChallengeById(id)});
+        this.resolveNumRef(this.activechallenges[index], 'valueStart', (id) => {return this.resolveOptionById(id)});
+        this.resolveNumRef(this.activechallenges[index], 'valueGoal', (id) => {return this.resolveOptionById(id)});
       }
     });
   }
 
-  public getChallengeById(id: number): Challenge {
+  // resolves numeric references to object references, wrap the resolveById
+  // function around arrow-syntax to keep "this" context
+  private resolveNumRef(onObject: any, field: string, resolveById: any) {
+    if (typeof onObject[field] === 'number') {
+      // id as number
+      let id: number = +onObject[field];
+      // find by id (intented use of resolveById function)
+      onObject[field] = resolveById(id);
+    }
+  }
+  // will only return not-null once tree is loaded!
+  public resolveCategoryById(id: number): Category {
+    for (let cat of this.categories) {
+      if (cat.id == id) {
+        return cat;
+      }
+    }
+    return null;
+  }
+  // will only return not-null once tree is loaded!
+  public resolveChallengeById(id: number): Challenge {
     for (let chl of this.challenges) {
       if (chl.id == id) {
         return chl;
@@ -106,12 +92,10 @@ export class DataServiceService {
     }
     return null;
   }
-
-  public getOptionById(id: number): Option {
-    console.log('calling getOptionById()');
+  // will only return not-null once tree is loaded!
+  public resolveOptionById(id: number): Option {
     for (let opt of this.options) {
       if (opt.id == id) {
-        console.log('found option');
         return opt;
       }
     }
@@ -120,28 +104,14 @@ export class DataServiceService {
 
   // get categories from cache or remote if: not cached or forced reload
   public getCategories(forcedReload: boolean = false): Observable<any> {
-    console.log('called getCategories');
     // load from remote
     if (forcedReload || this.categories == undefined) {
-      console.log('... loading from remote');
-      let obs = this.http.get<any[]>(this.categoriesUrl)
-        .pipe(map(data => this.mapData(data)));
-      // fill cache
-      obs.subscribe((categories) => {
-        this.categories = categories;
-        this.challenges = [];
-        this.options = [];
-        for (let cat of this.categories) {
-          this.challenges = this.challenges.concat(cat.challenges);
-          for (let chl of cat.challenges) {
-            this.options = this.options.concat(chl.options);
-          }
-        }
-      })
-      return obs;
+      console.log('... loading categories from remote');
+      return this.http.get<any[]>(this.categoriesUrl)
+        .pipe(map(data => this.mapCategories(data)));
     // load from cache
     } else {
-      console.log('... using cached');
+      console.log('... using cached categories');
       return new Observable((obs) => {
         obs.next(this.categories);
         obs.complete();
@@ -149,91 +119,34 @@ export class DataServiceService {
     }
   }
 
-<<<<<<< Updated upstream
-=======
   // get activechallenges from cache or remote if: not cached or forced reload
   public getActiveChallenges(user: number, forcedReload: boolean = false): Observable<any> {
-    console.log('called getActiveChallenges');
     // load from remote
     if (forcedReload || this.activechallenges == undefined) {
       // TODO: only load active challenges linked to user
-      console.log('... loading from remote');
-      let obs = this.http
-        .get<any[]>(this.activechallengesUrl)
+      console.log('... loading activechallenges from remote');
+      return this.http.get<any[]>(this.activechallengesUrl)
         .pipe(map(data => this.mapActiveChallenges(data)));
-      // fill cache
-      // obs.subscribe((activechallenges) => {this.activechallenges = activechallenges;})
-      return obs;
     // load from cache
     } else {
-      console.log('... using cached');
+      console.log('... using cached activechallenges');
       return new Observable((obs) => {
         obs.next(this.activechallenges);
         obs.complete();
       })
     }
   }
-
->>>>>>> Stashed changes
-  public createActiveChallenge(activechallenge: any): Observable<any> {
-    console.log('posting');
-    let config = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        };
-    return this.http.post<any[]>(this.activechallengesUrl, activechallenge);
-    // return new Observable((obs) => {
-    //   obs.next({});
-    //   obs.complete();
-    // })
+  public uncacheActiveChallenges() {
+    this.activechallenges = undefined;
   }
 
-  // // get challenges for category from cache or remote if: not cached or forced reload
-  // public getChallenges(categoryid: number, forcedReload: boolean = false): Observable<any> {
-  //   console.log('called getChallenges');
-  //   return new Observable((obs) => {
-  //     obs.next(
-  //
-  //     );
-  //   });
-  //
-  //   // remote/cache switch is done by getCategories, just handle Observable
-  //   this.getCategories(forcedReload).subscribe((categories) => {
-  //     for (let cat of categories) {
-  //       // find category,
-  //       if (cat.id == categoryid) {
-  //         // return its Challenges
-  //         this.challengesObservable.next(cat.challenges);
-  //         return;
-  //       }
-  //     }
-  //   });
-  //   return this.challengesObservable;
-  // }
-
-  // public getCategories2(): Category[] {
-  //
-  //   return [
-  //     {id: 1, label: "Nahrung", icon: 'utensils', help: 1, solid: true, isCategory: true},
-  //     {id: 2, label: "Verkehr", icon: 'car', help: 2, solid: true, isCategory: true},
-  //     {id: 3, label: "Wohnen", icon: 'home', help: 3, solid: false, isCategory: true},
-  //     {id: 4, label: "Kleidung", icon: 'tshirt', help: 4, solid: false, isCategory: true}
-  //   ] as Category[];
-  // }
-  //
-  // public getChallenges2(categoryid: number): Challenge[] {
-  //   let challenges: Challenge[] = [
-  //     {id: 1, label: "Regional", icon: 'leaf', help: 0, solid: true, category: 1, info: 'kaufe regional', question: 'wie oft kaufst du regional', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]},
-  //     {id: 2, label: "Saisonal", icon: 'utensils', help: 0, solid: true, category: 1, info: 'kaufe saisonal', question: 'wie oft kaufst du saisonal', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]},
-  //     {id: 3, label: "Vegan", icon: 'leaf', help: 0, solid: false, category: 1, info: 'lebe vegan', question: 'wie oft verzichtest du auf fleisch', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]},
-  //     {id: 4, label: "ÖV", icon: 'car', help: 0, solid: true, category: 2, info: 'öv', question: 'du öv?', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]},
-  //     {id: 5, label: "Ferien", icon: 'car', help: 0, solid: true, category: 2, info: 'ferien', question: 'urlaub?', options: ['nie', '1-2 Mal pro Woche', '2+ pro Woche'], impacts: [500, 200, 100]}
-  //   ]
-  //   return challenges.filter((challenge) => {
-  //     return challenge.category == categoryid;
-  //   });
-  // }
+  public createActiveChallenge(activechallenge: any): Observable<any> {
+    return this.http.post<any[]>(this.activechallengesUrl, activechallenge);
+  }
+  public deleteActiveChallenge(activechallenge: any): Observable<any> {
+    let url: string = this.activechallengesUrl + activechallenge.id + '/';
+    return this.http.delete<any[]>(url, activechallenge);
+  }
 }
 
 // base class for Category and Challenge (so they can be displayed with same
