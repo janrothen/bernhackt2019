@@ -14,6 +14,7 @@ export class DataServiceService {
 
   private categories: Category[] = undefined;
   private activechallenges: ActiveChallenge[] = undefined;
+  private completechallenges: ActiveChallenge[] = undefined;
   private challenges: Challenge[] = undefined;
   private options: Option[] = undefined;
   private trophies: Trophy[] = undefined;
@@ -59,16 +60,38 @@ export class DataServiceService {
   }
 
   // map data, cache and transform references(id) to actual object references
+  private mapCompleteChallenges(data: any): ActiveChallenge[] {
+    this.completechallenges = [];
+    if (!data || !data.results || data.results.length == 0) {
+      return this.completechallenges;
+    }
+    this.completechallenges = data.results.filter((item) => {
+      return item.challengeComplete ? true : false;
+    }) as ActiveChallenge[];
+    this.resolveActiveChallenges();
+    return this.completechallenges;
+  }
+
+  // map data, cache and transform references(id) to actual object references
   private mapTrophies(data: any): Trophy[] {
     this.trophies = [];
     if (!data || !data.results || data.results.length == 0) {
       return this.trophies;
     }
     this.trophies = data.results as Trophy[];
-    console.log(this.trophies);
+    // for (let res of data.results) {
+    //   console.log(res);
+    //   this.trophies.push({
+    //     chall0nge: res.challenge,
+    //     id: res.id,
+    //     icon: res.icon,
+    //     label: res.label
+    //
+    //   })
+    // }
     return this.trophies;
   }
-  
+
   // resolves numeric references to object references
   private resolveActiveChallenges() {
     this.getCategories().subscribe((categories) => {
@@ -153,13 +176,33 @@ export class DataServiceService {
     }
   }
 
+  // get activechallenges from cache or remote if: not cached or forced reload
+  public getCompletedChallenges(user: number, forcedReload: boolean = false): Observable<any> {
+    // load from remote
+    if (forcedReload || this.completechallenges == undefined) {
+      // TODO: only load active challenges linked to user
+      console.log('... loading activechallenges from remote');
+      return this.http.get<any[]>(this.activechallengesUrl)
+        .pipe(map(data => this.mapCompleteChallenges(data)));
+    // load from cache
+    } else {
+      console.log('... using cached activechallenges');
+      return new Observable((obs) => {
+        obs.next(this.completechallenges);
+        obs.complete();
+      })
+    }
+  }
+
   // get categories from cache or remote if: not cached or forced reload
   public getTrophies(forcedReload: boolean = false): Observable<any> {
     // load from remote
     if (forcedReload || this.trophies == undefined) {
       console.log('... loading trophies from remote');
       return this.http.get<any[]>(this.trophiesUrl)
-        .pipe(map(data => this.mapTrophies(data)));
+        .pipe(map(data => {
+          console.log(data);
+          return this.mapTrophies(data)}));
     // load from cache
     } else {
       console.log('... using cached trophies');
@@ -235,8 +278,9 @@ export class ActiveChallenge {
 // *= to do
 export class Trophy {
   public id: number;
-  public user: number;
+  // public user: number;
   public icon: any;
   public label: string;
-  public challenge: Challenge | number;
+  // public challenge: Challenge | number;
+  public challenge: number;
 }

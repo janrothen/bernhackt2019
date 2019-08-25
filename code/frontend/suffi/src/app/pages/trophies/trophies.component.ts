@@ -13,8 +13,19 @@ export class TrophiesComponent implements OnInit {
   constructor(private dataservice: DataServiceService) { }
 
   ngOnInit() {
+    // get all trophies and completed challenges
     this.dataservice.getTrophies().subscribe((trophies) => {
-      this.trophies = trophies as Trophy[];
+      // this.trophies = trophies as Trophy[];
+      this.dataservice.getCompletedChallenges(4).subscribe((completed) => {
+        this.trophies = [];
+        for (let comp of completed) {
+          for (let trophy of trophies as Trophy[]) {
+            if (trophy.challenge == comp.challenge) {
+              this.trophies.push(trophy);
+            }
+          }
+        }
+      });
     });
   }
 
