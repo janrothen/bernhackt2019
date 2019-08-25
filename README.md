@@ -1,5 +1,5 @@
 # BärnHäckt 2019
-
+![Bär](https://www.bernhackt.ch/wp-content/uploads/bear_animiert_gelb-3.gif)
 ## Code
 
 All shiny and chrome
