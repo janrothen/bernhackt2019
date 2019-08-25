@@ -1,5 +1,23 @@
+@import './../../../library.scss';
+
 h2 {
   margin-top: .5em;
   margin-left: 2em;
   margin-bottom: 0em;
+}
+
+article {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4rem;
+  display: block;
+
+  border: 0.2rem solid $secondary-color-darker;
+  border-radius: $button-radius;
+
+  color: $text-color;
+  background-color: $secondary-color;
+
+  width: 66%;
+  padding: 2rem 3rem;
 }
