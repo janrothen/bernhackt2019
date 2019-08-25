@@ -14,6 +14,7 @@ export class DataServiceService {
   private activechallenges: ActiveChallenge[] = undefined;
   private challenges: Challenge[] = undefined;
   private options: Option[] = undefined;
+  private trophies: Trophy
 
   constructor(private http: HttpClient) { }
 
@@ -191,4 +192,14 @@ export class ActiveChallenge {
   public valueStart: Option | number;
   public valueGoal: Option | number;
   public complete: boolean;
+}
+
+// Trophy: (per user*) trophy that have been completed
+// *= to do
+export class Trophy {
+  public id: number;
+  public user: number;
+  public icon: any;
+  public label: string;
+  public challenge: Challenge | number;
 }
