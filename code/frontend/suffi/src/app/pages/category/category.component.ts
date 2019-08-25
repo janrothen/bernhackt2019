@@ -18,25 +18,8 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
     let id: number = +this.route.snapshot.paramMap.get('id');
     this.dataservice.getCategories().subscribe((categories) => {
-      // find category in data tree
-      for (let cat of categories) {
-        if (cat.id == id) {
-          this.challenges = cat.challenges;
-          return;
-        }
-      }
+      this.challenges = this.dataservice.resolveCategoryById(id).challenges;
     });
-    // console.log(this.challenges);
-    // let id: number = +this.route.snapshot.paramMap.get('id');
-    // // no id given, take main challenge categories
-    // if (!id) {
-    //   this.challenges = this.getChallenges([1,2,3,4]);
-    // // id given, extract its childs
-    // } else {
-    //   // selected challenge
-    //   let sel = this.getChallenges([id])[0];
-    //   this.challenges = this.getChallenges(sel.childs);
-    // }
   }
 
 }

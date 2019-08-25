@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import Utils from '../../utility/utils';
-import { Challenge } from '../../services/data-service.service';
+import { Challenge, ActiveChallenge } from '../../services/data-service.service';
 
 @Component({
   selector: 'app-mychallenge-item',
@@ -8,17 +8,16 @@ import { Challenge } from '../../services/data-service.service';
   styleUrls: ['./mychallenge-item.component.scss']
 })
 export class MyChallengeItemComponent implements OnInit {
-  @Input() challenge:  Challenge;
-  private route: string;
-  private icon: any;
+  @Input() activechallenge: ActiveChallenge;
 
   constructor() { }
 
   ngOnInit() {
-    this.route = '/challenge';
-    if (this.challenge['isCategory']) {
-      this.route = '/category';
-    }
-    this.icon = Utils.iconConfigurationForLabel(this.challenge.icon)
+  }
+
+  // done by getter so (async) changes on challenge are respected
+  private getIcon() {
+    let challenge: Challenge = this.activechallenge.challenge as Challenge;
+    return Utils.iconConfigurationForLabel(challenge.icon)
   }
 }

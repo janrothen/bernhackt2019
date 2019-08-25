@@ -19,7 +19,7 @@ export class ChallengeItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.challenge);
+    // switch route depending on wheter challenge is Challenge or Category
     this.route = '/challenge';
     if (this.challenge['isCategory']) {
       this.route = '/category';
