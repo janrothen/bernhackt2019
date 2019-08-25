@@ -5,8 +5,7 @@ from .models import Category, Challenge, Option, ActiveChallenge, Trophy
 class ActiveChallengeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ActiveChallenge
-        fields = ['id', 'challenge', 'valueStart', 'valueGoal', 'user']
-
+        fields = ['id', 'challenge', 'valueStart', 'valueGoal', 'user', 'challengeComplete']
 
 class UserSerializer(serializers.ModelSerializer):
     activeChallenges = ActiveChallengeSerializer(many=True, read_only=True)

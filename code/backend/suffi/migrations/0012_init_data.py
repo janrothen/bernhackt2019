@@ -2,6 +2,7 @@
 
 from django.db import migrations
 from suffi.greenAPI.models import Category, Challenge, Option, Trophy
+from django.contrib.auth.models import User
 import pandas as pd
 
 def init_data(apps, schema_editor):
@@ -31,6 +32,9 @@ def init_data(apps, schema_editor):
                 for idx, option_row in df.loc[df.label==row.label].iterrows():
                     option = Option(title=option_row.option_title, co2=option_row.option_co2, challenge=challange)
                     option.save()
+    newUser = User(username="Mr_Green",
+                        email="mrgreen@suffi.ch")
+    newUser.save()
 
 
 class Migration(migrations.Migration):

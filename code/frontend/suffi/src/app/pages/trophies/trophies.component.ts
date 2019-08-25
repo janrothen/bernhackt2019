@@ -8,7 +8,7 @@ import { DataServiceService, Trophy } from '../../services/data-service.service'
   styleUrls: ['./trophies.component.scss']
 })
 export class TrophiesComponent implements OnInit {
-  private trophies: Trophy[];
+  public trophies: Trophy[];
 
   constructor(private dataservice: DataServiceService) { }
 

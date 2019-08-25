@@ -1,6 +1,6 @@
 ---
 applications:
 - name: suffi
-  buildpack: staticfile_buildpack
   memory: 128M
-  path: dist/suffi
+  path: dist
+  buildpack: https://github.com/cloudfoundry/nginx-buildpack

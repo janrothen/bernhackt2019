@@ -37,4 +37,4 @@ class ActiveChallenge(models.Model):
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
     valueStart = models.ForeignKey(Option, related_name='activeChallenges_Start', on_delete=models.CASCADE)
     valueGoal = models.ForeignKey(Option, related_name='activeChallenges_Goal', on_delete=models.CASCADE)
-    challangeComplete = models.BooleanField(default=False)
+    challengeComplete = models.BooleanField(default=False)

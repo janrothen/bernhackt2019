@@ -9,7 +9,7 @@ import { Trophy } from '../../services/data-service.service';
 })
 export class TrophyItemComponent implements OnInit {
   @Input() trophy: Trophy;
-  private icon: any;
+  public icon: any;
 
   constructor() { }
 
