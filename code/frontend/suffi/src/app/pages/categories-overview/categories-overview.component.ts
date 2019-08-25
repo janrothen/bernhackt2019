@@ -7,8 +7,8 @@ import { DataServiceService, Category, Challenge } from '../../services/data-ser
   styleUrls: ['./categories-overview.component.scss']
 })
 export class CategoriesOverviewComponent implements OnInit {
-  private categories: Category[] = [];
-  private activechallenges: Challenge[] = [];
+  public categories: Category[] = [];
+  public activechallenges: Challenge[] = [];
 
   constructor(private dataservice: DataServiceService) { }
 

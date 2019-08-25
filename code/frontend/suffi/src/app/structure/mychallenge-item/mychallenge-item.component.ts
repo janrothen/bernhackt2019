@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import Utils from '../../utility/utils';
-import { Challenge, ActiveChallenge } from '../../services/data-service.service';
+import { Challenge, ActiveChallenge, Option } from '../../services/data-service.service';
 
 @Component({
   selector: 'app-mychallenge-item',
@@ -16,7 +16,13 @@ export class MyChallengeItemComponent implements OnInit {
   }
 
   // done by getter so (async) changes on challenge are respected
-  private getIcon() {
+  public getChallenge(): Challenge {
+    return this.activechallenge.challenge as Challenge;
+  }
+  public getGoal(): Option {
+    return this.activechallenge.valueGoal as Option;
+  }
+  public getIcon() {
     let challenge: Challenge = this.activechallenge.challenge as Challenge;
     return Utils.iconConfigurationForLabel(challenge.icon)
   }

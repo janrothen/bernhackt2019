@@ -27,3 +27,21 @@ a {
   text-decoration: none;
   color: $text-color;
 }
+
+input[type='text'] {
+  display: block;
+  margin: 1rem 0;
+  padding: 0.4rem;
+  border: 0.1rem solid $secondary-color-darker;
+  border-radius: $button-radius;
+}
+
+button[type='button'] {
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: $button-radius;
+  background: $icon-color;
+  color: white;
+}

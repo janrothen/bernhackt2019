@@ -11,13 +11,13 @@ import Utils from './../../utility/utils';
 export class ChallengeComponent implements OnInit {
   // TODO: not hardcode user!!!!
   private user: number = 4;
-  private challenge: Challenge;
-  private icon: any;
+  public challenge: Challenge;
+  public icon: any;
   // using string here for AngularForm's way of checking value (value must be string)
-  private current: string;
-  private goal: string;
-  private isActive: boolean = false;
-  private activechallenge: ActiveChallenge;
+  public current: string;
+  public goal: string;
+  public isActive: boolean = false;
+  public activechallenge: ActiveChallenge;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,10 +50,14 @@ export class ChallengeComponent implements OnInit {
         }
       });
     });
-
   }
 
-  private startChallenge() {
+  // get current as number
+  public getCurrent(): number {
+    return +this.current;
+  }
+
+  public startChallenge() {
     let activechallenge = {
       user: this.user,
       challenge: this.challenge.id,
@@ -67,7 +71,7 @@ export class ChallengeComponent implements OnInit {
     });
   }
 
-  private stopChallenge() {
+  public stopChallenge() {
     this.dataservice.deleteActiveChallenge(this.activechallenge).subscribe((result) => {
       // force reload
       this.dataservice.uncacheActiveChallenges();

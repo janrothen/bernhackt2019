@@ -11,8 +11,8 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 })
 export class ChallengeItemComponent implements OnInit {
   @Input() challenge: Category | Challenge;
-  private route: string;
-  private icon: any;
+  public route: string;
+  public icon: any;
 
   faQuestionCircle = faQuestionCircle
 

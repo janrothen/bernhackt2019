@@ -8,7 +8,7 @@ import { DataServiceService, Challenge } from '../../services/data-service.servi
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-  private challenges: Challenge[];
+  public challenges: Challenge[];
 
   constructor(
     private route: ActivatedRoute,

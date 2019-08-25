@@ -9,17 +9,17 @@
     <p>{{ challenge.info }}</p>
   </div>
 
-  <h4 (click)="debugvalues()">{{ challenge.question }}</h4>
+  <h4>{{ challenge.question }}</h4>
   <label *ngFor="let option of challenge.options; let i = index" class="option">
     <!-- value must be string, hence this quirk -->
     <input type="radio" name="current" [value]="i+''" [(ngModel)]="current" [attr.checked]="i == current ? true : null">
     <span>{{ option.title }}</span>
   </label>
 
-  <div *ngIf="current == 0">
+  <div *ngIf="getCurrent() == 0">
     sehr gut
   </div>
-  <div *ngIf="current > 0">
+  <div *ngIf="getCurrent() > 0">
     <h4>Welches Ziel strebst du an?</h4>
     <label *ngFor="let option of challenge.options; let i = index" class="option">
       <!-- value must be string, hence this quirk -->

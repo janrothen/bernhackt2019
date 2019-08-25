@@ -8,7 +8,7 @@ import { DataServiceService, Challenge, ActiveChallenge } from '../../services/d
 })
 export class MyChallengesListComponent implements OnInit {
   @Input() challenges: any;
-  private activechallenges: ActiveChallenge[];
+  public activechallenges: ActiveChallenge[];
 
   constructor(private dataservice: DataServiceService) { }
 
