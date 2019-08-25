@@ -8,14 +8,10 @@ import { DataServiceService, ActiveChallenge } from '../../services/data-service
 })
 export class MyChallengesListComponent implements OnInit {
   @Input() challenges: any;
-  public activechallenges: ActiveChallenge[];
 
   constructor(private dataservice: DataServiceService) { }
 
   ngOnInit() {
-    this.dataservice.getActiveChallenges(4).subscribe((activechallenges) => {
-      this.activechallenges = activechallenges as ActiveChallenge[];
-    });
   }
 
 }

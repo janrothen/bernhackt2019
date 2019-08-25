@@ -72,7 +72,16 @@ export class ChallengeComponent implements OnInit {
   }
 
   public stopChallenge() {
-    this.dataservice.deleteActiveChallenge(this.activechallenge).subscribe((result) => {
+    // copy to de-reference objects
+    let activechallenge = {
+      id: this.activechallenge.id,
+      user: this.user,
+      challenge: this.challenge.id,
+      valueStart: this.challenge.options[this.current].id,
+      valueGoal: this.challenge.options[this.goal].id,
+      challengeComplete: true
+    };
+    this.dataservice.updateActiveChallenge(activechallenge).subscribe((result) => {
       // force reload
       this.dataservice.uncacheActiveChallenges();
       this.router.navigate(['']);

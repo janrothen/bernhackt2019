@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataServiceService, Category, Challenge } from '../../services/data-service.service';
+import { DataServiceService, Category, Challenge, ActiveChallenge } from '../../services/data-service.service';
 
 @Component({
   selector: 'app-categories-overview',
@@ -8,7 +8,7 @@ import { DataServiceService, Category, Challenge } from '../../services/data-ser
 })
 export class CategoriesOverviewComponent implements OnInit {
   public categories: Category[] = [];
-  public activechallenges: Challenge[] = [];
+  public activechallenges: ActiveChallenge[] = [];
 
   constructor(private dataservice: DataServiceService) { }
 
@@ -18,8 +18,10 @@ export class CategoriesOverviewComponent implements OnInit {
     .subscribe(
       (categories) => {
         this.categories = categories;
-        this.activechallenges = this.categories[0].challenges;
       }
     )
+    this.dataservice.getActiveChallenges(4).subscribe((activechallenges) => {
+      this.activechallenges = activechallenges as ActiveChallenge[];
+    });
   }
 }

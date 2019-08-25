@@ -51,7 +51,9 @@ export class DataServiceService {
     if (!data || !data.results || data.results.length == 0) {
       return this.activechallenges;
     }
-    this.activechallenges = data.results as ActiveChallenge[];
+    this.activechallenges = data.results.filter((item) => {
+      return item.challengeComplete ? false : true;
+    }) as ActiveChallenge[];
     this.resolveActiveChallenges();
     return this.activechallenges;
   }
@@ -175,10 +177,14 @@ export class DataServiceService {
   public createActiveChallenge(activechallenge: any): Observable<any> {
     return this.http.post<any[]>(this.activechallengesUrl, activechallenge);
   }
-  public deleteActiveChallenge(activechallenge: any): Observable<any> {
+  public updateActiveChallenge(activechallenge: any): Observable<any> {
     let url: string = this.activechallengesUrl + activechallenge.id + '/';
-    return this.http.delete<any[]>(url, activechallenge);
+    return this.http.put<any[]>(url, activechallenge);
   }
+  // public deleteActiveChallenge(activechallenge: any): Observable<any> {
+  //   let url: string = this.activechallengesUrl + activechallenge.id + '/';
+  //   return this.http.delete<any[]>(url, activechallenge);
+  // }
 }
 
 // base class for Category and Challenge (so they can be displayed with same
@@ -222,7 +228,7 @@ export class ActiveChallenge {
   public challenge: Challenge | number;
   public valueStart: Option | number;
   public valueGoal: Option | number;
-  public complete: boolean;
+  public challengeComplete: boolean;
 }
 
 // Trophy: (per user*) trophy that have been completed
