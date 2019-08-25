@@ -2,6 +2,6 @@
   <a [routerLink]="['/challenge', getChallenge().id]" class="button" [attr.solid]="getChallenge().solid ? true : null">
     <fa-icon [icon]="getIcon()" class="icon fa-2x"></fa-icon>
     <span class="label">{{ getChallenge().label }}</span>
-    <div>{{ getChallenge().question }} &ndash; Ihr Ziel: {{ getGoal().title }}</div>
+    <div class="question">{{ getChallenge().question }} &ndash; Ihr Ziel: {{ getGoal().title }}</div>
   </a>
 </div>
